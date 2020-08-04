@@ -1,0 +1,32 @@
+title: Food Images Classifier
+description: Classify food images using deep learning
+about:
+
+
+  This is a Food Images Classifier using Deep Learning built on top of Tessorflow.
+
+
+  The project was build by [Nidhin Pattaniyil](https://npatta01.github.io)
+  and [Reshama Shaikh](https://reshamas.github.io).
+
+
+  More info and the source code can he found in the [Manning Course](Link) .
+
+
+
+code: https://github.com/npatta01/web-deep-learning-classifier
+
+server_url: ...
+browser_url: ...
+
+sampleImages:
+  - name: lasagne
+    url: https://upload.wikimedia.org/wikipedia/commons/b/ba/Lasagne_-_stonesoup.jpg
+  - name: sushi
+    url: https://upload.wikimedia.org/wikipedia/commons/6/60/Sushi_platter.jpg
+  - name: waffles
+    url: https://upload.wikimedia.org/wikipedia/commons/5/5b/Waffles_with_Strawberries.jpg
+  - name: eggplant (not in training data)
+    url: https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Solanum_melongena_24_08_2012_%281%29.JPG/1280px-Solanum_melongena_24_08_2012_%281%29.JPG
+  - name: table (not in training & not a food)
+    url: https://image.shutterstock.com/image-photo/brown-light-wooden-round-dining-260nw-588358070.jpg

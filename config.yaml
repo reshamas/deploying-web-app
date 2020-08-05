@@ -3,10 +3,10 @@ description: Classify food images using deep learning
 about:
 
 
-  This is a Food Images Classifier using Deep Learning built on top of Tessorflow.
+  This is a Food Images Classifier using Deep Learning built on top of Tensorflow.
 
 
-  The project was build by [Nidhin Pattaniyil](https://npatta01.github.io)
+  The project was built by [Nidhin Pattaniyil](https://npatta01.github.io)
   and [Reshama Shaikh](https://reshamas.github.io).
 
 

@@ -16,17 +16,24 @@ about:
 
 code: https://github.com/npatta01/web-deep-learning-classifier
 
-server_url: ...
-browser_url: ...
+url_server: http://localhost:8000
+url_browser: http://localhost:8000/artifacts/model_tfjs/model.json
+
+image_size: 224
+top_k: 5
 
 sampleImages:
-  - name: lasagne
-    url: https://upload.wikimedia.org/wikipedia/commons/b/ba/Lasagne_-_stonesoup.jpg
-  - name: sushi
-    url: https://upload.wikimedia.org/wikipedia/commons/6/60/Sushi_platter.jpg
-  - name: waffles
-    url: https://upload.wikimedia.org/wikipedia/commons/5/5b/Waffles_with_Strawberries.jpg
-  - name: eggplant (not in training data)
-    url: https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Solanum_melongena_24_08_2012_%281%29.JPG/1280px-Solanum_melongena_24_08_2012_%281%29.JPG
-  - name: table (not in training & not a food)
-    url: https://image.shutterstock.com/image-photo/brown-light-wooden-round-dining-260nw-588358070.jpg
+  - name: Granny Smith
+    url: https://upload.wikimedia.org/wikipedia/commons/d/d7/Granny_smith_and_cross_section.jpg
+  - name: keyboard
+    url: https://upload.wikimedia.org/wikipedia/commons/0/0c/ThinkPad_USB_keyboard_%283829537325%29.jpg
+  - name: killer whale
+    url: https://upload.wikimedia.org/wikipedia/commons/3/37/Killerwhales_jumping.jpg
+  - name: Labrador Retriever
+    url: https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg
+  - name: iphone (not in training data)
+    url: https://upload.wikimedia.org/wikipedia/commons/3/3b/IPhone_5s_top.jpg
+  - name: sphinx (not in training data)
+    url: https://upload.wikimedia.org/wikipedia/commons/f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg
+  - name: salad (not in training data)
+    url : https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg

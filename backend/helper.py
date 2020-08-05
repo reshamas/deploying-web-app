@@ -1,22 +1,35 @@
 import json
+from typing import List, Optional
 
 import PIL
 import numpy as np
 import tensorflow as tf
+from pydantic import BaseModel
 from tensorflow.keras.applications import imagenet_utils
 from tensorflow.keras.preprocessing.image import img_to_array
 
 
-class Inferencer:
-    def __init__(self, artifacts="model", target_size=(224, 224)):
-        self.classifier = tf.keras.models.load_model(artifacts, compile=True)
+class InferencerPrediction(BaseModel):
+    label: str
+    confidence: float
 
+
+class InferenceResponse(BaseModel):
+    file_size: int = 0
+    predictions: List[InferencerPrediction] =[]
+    duration_inference: int = 0
+    error: Optional[str]
+
+
+class Inferencer:
+    def __init__(self, artifacts="artifacts", target_size=(224, 224)):
+        self.classifier = tf.keras.models.load_model(artifacts+"/model.h5")
         with open(f"{artifacts}/classes.json") as f:
-            self.classes = json.load(f)
+            self.labels = json.load(f)
 
         self.target_size = target_size
 
-    def predict(self, image: PIL.Image.Image, num_labels:int=3):
+    def predict(self, image: PIL.Image.Image, top_k: int = 3) -> List[InferencerPrediction]:
         # resize the input image and preprocess it
         image = image.resize(self.target_size)
         image = tf.keras.preprocessing.image.img_to_array(image)
@@ -26,17 +39,10 @@ class Inferencer:
 
         result = self.classifier.predict(image)
 
-        res2 = imagenet_utils.decode_predictions(result)
-
-
-        predicted_class = np.argmax(result[0], axis=-1)
-
-        predicted_class_name = self.classes[predicted_class]
-
-        res = sorted(
+        result = sorted(
             list(zip(
 
-                self.classes
+                self.labels
                 , np.squeeze(result).tolist()
             )
             )
@@ -44,7 +50,14 @@ class Inferencer:
             , reverse=True
         )
 
-        return res[:num_labels]
+        result = result[:top_k]
+
+        res = [InferencerPrediction(label=r[0], confidence=r[1]) for r in result]
+
+        return res
+
+    def classes(self):
+        return self.labels
 
 
 def prepare_image(image: PIL.Image.Image, target) -> PIL.Image.Image:

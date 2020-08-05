@@ -29,10 +29,12 @@
   "scripts": {
     "prestart": "node setup.tsx",
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && cp build/index.html build/404.html ",
     "test": "craco test",
     "eject": "craco eject"
   },
+  "homepage": "https://reshamas.github.io/deploying-web-app",
+
   "eslintConfig": {
     "extends": "react-app"
   },

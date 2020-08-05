@@ -1,0 +1,10 @@
+.vscode
+.idea
+.mypy_cache
+frontend/config.yaml
+backend/build
+frontend/*.zip
+.git
+frontend/build
+frontend/node_modules
+.github

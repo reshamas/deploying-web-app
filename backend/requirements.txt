@@ -1,0 +1,6 @@
+fastapi==0.60.*
+python-multipart==0.0.5
+tensorflow==2.3.0
+uvicorn==0.11.8
+Pillow==7.2.*
+aiofiles==0.5.*

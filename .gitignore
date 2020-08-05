@@ -1,0 +1,8 @@
+.vscode
+.idea
+.mypy_cache
+node_modules
+frontend/config.yaml
+build
+frontend/*.zip
+artifacts

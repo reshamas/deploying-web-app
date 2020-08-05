@@ -54,3 +54,7 @@ heroku container:release web --app ${APP_NAME}
 heroku open --app $APP_NAME
 heroku logs --tail --app ${APP_NAME}
 ```
+
+
+heroku url
+https://manning-deploy-imagenet.herokuapp.com/

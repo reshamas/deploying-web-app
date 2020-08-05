@@ -175,7 +175,7 @@ export default class MainPage extends React.Component<{}, IState> {
                         </div>
                     </FormGroup>
 
-                    <img src={this.state.file} className={styles.img_preview} hidden={!this.state.imageSelected} crossOrigin="anonymous" ref={this.imageRef}/>
+                    <img src={this.state.file} className={styles.img_preview} alt={"selected_img"} hidden={!this.state.imageSelected} crossOrigin="anonymous" ref={this.imageRef}/>
 
                     <FormGroup>
                         <Button color="success" onClick={this._predict}

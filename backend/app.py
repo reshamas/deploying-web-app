@@ -98,7 +98,7 @@ if __name__ == "__main__":
     reload = True
     workers = 1
 
-    port = os.environ.get('PORT', 8000)
+    port = int(os.environ.get('PORT', 8000))
 
     uvicorn.run("app:app", host="0.0.0.0", port=port, reload=reload, workers=workers
                 , log_level="debug"

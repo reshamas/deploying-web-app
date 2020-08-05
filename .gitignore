@@ -9,3 +9,4 @@ artifacts
 .DS_Store
 backend/__pycache__/
 backend/.DS_Store
+artifacts.zip

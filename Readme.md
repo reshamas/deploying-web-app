@@ -45,7 +45,7 @@ brew tap heroku/brew && brew install heroku
 heroku login
 heroku container:login
 
-APP_NAME="manning-deploy-imagenet-demo"
+APP_NAME="manning-deploy-imagenet"
 heroku create $APP_NAME
 
 heroku container:push web --app ${APP_NAME}

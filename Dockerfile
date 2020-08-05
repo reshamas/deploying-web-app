@@ -1,14 +1,14 @@
-FROM node:14 AS ui
+FROM node:14-alpine AS ui
 WORKDIR /app
 COPY frontend/yarn.lock frontend/package.json ./
 RUN yarn install
 COPY frontend/ ./
-RUN cd frontend && yarn build
+RUN yarn build
 
 
 FROM python:3.8
 WORKDIR /app
-COPY backend/requirement.txt ./
+COPY backend/requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . .
 COPY --from=ui /app/build .

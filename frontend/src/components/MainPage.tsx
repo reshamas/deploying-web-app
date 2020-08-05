@@ -1,60 +1,67 @@
 import React, {ChangeEvent} from 'react';
-import ReactMarkdown from "react-markdown";
-import {Button, Col, Dropdown, Form, FormGroup, Row} from "react-bootstrap";
+import {Button, Col, Dropdown, Form, FormGroup, Row, Spinner} from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
-import {ImageItem} from "../model";
+import {ImageItem, InferenceResult} from "../model";
 import styles from "./MainPage.module.css";
-import axios from "axios";
+import {ModelService} from "../ModelService";
 
 
-interface IState{
-    url:string | null
+interface IState {
+    url: string
     imageSelected: boolean
-    isLoading:boolean
-    file:string
-    predictions: any[]
-    rawFile:any
+    isLoading: boolean
+    file: string
+    browserResponse: InferenceResult | null
+    serverResponse: InferenceResult | null
+    rawFile: File | null
 }
 
-export default class MainPage extends React.Component<{},IState> {
+export default class MainPage extends React.Component<{}, IState> {
 
-    state:IState = {
+    state: IState = {
         url: "",
-        imageSelected:false,
-        isLoading:false,
-        file:"",
-        predictions: [],
-        rawFile:null
+        imageSelected: false,
+        isLoading: false,
+        file: "",
+        browserResponse: null,
+        serverResponse: null,
+        rawFile: null
 
     }
+    private imageRef = React.createRef<HTMLImageElement>()
 
-    _clear =()=> {
+
+    modelService = new ModelService();
+
+    _clear = () => {
         this.setState({
             file: "",
             imageSelected: false,
-            predictions: [],
+            browserResponse: null,
+            serverResponse: null,
             rawFile: null,
-            url: null
+            url: ""
         })
+
     }
 
-    _onUrlChange =(url:string)=> {
+    _onUrlChange = (url: string) => {
         //this.state.url = url;
         if ((url.length > 5) && (url.indexOf("http") === 0)) {
             this.setState({
-                url:url,
+                url: url,
                 file: url,
                 imageSelected: true
             })
         }
     }
 
-    _onFileUpload =(event?: ChangeEvent<HTMLInputElement>)=>{
+    _onFileUpload = (event?: ChangeEvent<HTMLInputElement>) => {
         const files = event?.target?.files;
 
-        if (files && files.length > 0){
+        if (files && files.length > 0) {
             const currentFile = files[0]
             this.setState({
                 rawFile: currentFile,
@@ -66,33 +73,54 @@ export default class MainPage extends React.Component<{},IState> {
 
     }
 
-    _predict = async (event:any) => {
-        this.setState({isLoading: true});
+    _predict = async (event: any) => {
 
-        let resPromise = null;
-        if (this.state.rawFile) {
-            const data = new FormData();
-            data.append('file', this.state.rawFile);
-            resPromise = axios.post('/api/classify', data);
+        if (this.state.url || this.state.rawFile) {
+            this.setState({isLoading: true});
+
+            const serverRes = await this.modelService.predictServerSideInference({url: this.state.url, imageData: this.state.rawFile});
+            const browserRes = await this.modelService.predictBrowserSideInference(this.imageRef.current);
+
+            try {
+
+
+                this.setState({serverResponse: serverRes, browserResponse: browserRes, isLoading: false});
+                console.log(serverRes)
+            } catch (e) {
+                this.setState({isLoading: false});
+                alert(e)
+            }
         } else {
-            resPromise = axios.get('/api/classify', {
-                params: {
-                    url: this.state.file
-                }
-            });
-        }
-
-        try {
-            const res = await resPromise;
-            const payload = res.data;
-
-            this.setState({predictions: payload.predictions, isLoading: false});
-            console.log(payload)
-        } catch (e) {
-            alert(e)
+            alert("Either url or image needs to be set")
         }
     }
-    sampleUrlSelected =(si:ImageItem) => {
+
+    renderPredictions(res: InferenceResult | undefined | null) {
+        if (res && res.predictions && res.predictions.length > 0) {
+
+            const predictionItems = res.predictions.map((item) =>
+                <li>{item.label} ({item.confidence.toFixed(4)} ) </li>
+            );
+
+            return (
+                <div>
+                    <ul>
+                        {predictionItems}
+                    </ul>
+
+                    <div>Duration (inference): {res.duration_inference} ms</div>
+                    <div>Duration (total): {res.duration_total} ms</div>
+                </div>
+
+            )
+
+        } else {
+            return null
+        }
+
+    }
+
+    sampleUrlSelected = (si: ImageItem) => {
         this._onUrlChange(si.url);
     }
 
@@ -110,13 +138,13 @@ export default class MainPage extends React.Component<{},IState> {
                             <p>Provide a Url</p>
                             <div>
 
-                                <Dropdown >
+                                <Dropdown>
                                     <DropdownToggle>
                                         Sample Image Url
                                     </DropdownToggle>
                                     <DropdownMenu>
                                         {sampleImages.map(si =>
-                                            <DropdownItem onClick={()=>this.sampleUrlSelected(si)}>
+                                            <DropdownItem onClick={() => this.sampleUrlSelected(si)} key={si.name}>
                                                 {si.name}
                                             </DropdownItem>)
                                         }
@@ -125,7 +153,7 @@ export default class MainPage extends React.Component<{},IState> {
                                 </Dropdown>
 
                             </div>
-                            {/*<Input value={this.state.url} name="file" onChange={(e)=>this._onUrlChange(e.target.value)}*/}
+                            <input className="form-control" value={this.state.url} name="file" onChange={(e) => this._onUrlChange(e.target.value)}/>
 
                         </div>
                     </FormGroup>
@@ -135,14 +163,19 @@ export default class MainPage extends React.Component<{},IState> {
                         <div>
                             <p>Upload an image</p>
                         </div>
-                        {/*<Label for="imageUpload">*/}
-                        {/*    <Input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" ref="file"*/}
-                        {/*           onChange={this._onFileUpload}/>*/}
-                        {/*    <span className="btn btn-primary">Upload</span>*/}
-                        {/*</Label>*/}
+                        <div id="imageUpload">
+
+                            <Form.File
+                                id="custom-file"
+                                label="Upload an image"
+                                accept=".png, .jpg, .jpeg"
+                                custom
+                                onChange={this._onFileUpload}
+                            />
+                        </div>
                     </FormGroup>
 
-                    <img src={this.state.file} className={styles.img_preview} hidden={!this.state.imageSelected}/>
+                    <img src={this.state.file} className={styles.img_preview} hidden={!this.state.imageSelected} crossOrigin="anonymous" ref={this.imageRef}/>
 
                     <FormGroup>
                         <Button color="success" onClick={this._predict}
@@ -152,12 +185,12 @@ export default class MainPage extends React.Component<{},IState> {
                     </FormGroup>
 
 
-                    {/*{this.state.isLoading && (*/}
-                    {/*    <div>*/}
-                    {/*        <Spinner color="primary" type="grow" style={{width: '5rem', height: '5rem'}}/>*/}
+                    {this.state.isLoading && (
+                        <div>
+                            <Spinner animation="grow" color="primary" style={{width: '5rem', height: '5rem'}}/>
 
-                    {/*    </div>*/}
-                    {/*)}*/}
+                        </div>
+                    )}
 
                 </Form>
 
@@ -166,20 +199,17 @@ export default class MainPage extends React.Component<{},IState> {
                         <Col>
                             <h2> Server Side Inference</h2>
                             <p> Predictions</p>
+                            {this.renderPredictions(this.state.serverResponse)}
                         </Col>
 
                         <Col>
                             <h2> Client Side Inference</h2>
                             <p> Predictions</p>
+                            {this.renderPredictions(this.state.browserResponse)}
                         </Col>
                     </Row>
 
                 </div>
-
-
-
-
-                {/*{this.renderPrediction()}*/}
 
 
             </div>

@@ -1,32 +1,43 @@
 interface ImageItem {
-    name:string
-    url:string
+    name: string
+    url: string
 }
+
 interface APP_CONFIG {
     title: string
-    description:string
-    about:string
-    code:string
+    description: string
+    about: string
+    code: string
     sampleImages: ImageItem[]
+    url_server: string
+    url_browser: string
+    image_size: number
+    top_k: number
 
+}
+
+interface InferencerPrediction {
+    label: string
+    confidence: number
 }
 
 interface InferenceResult {
-    type: string
-    predictions: any[]
+    predictions: InferencerPrediction[]
     duration_total: number
-    duration_inference:number;
-
+    duration_inference: number
+    error: string
 }
 
-interface PredictionResponse {
-    server: InferenceResult
-    browser: InferenceResult
+type PredictionResponse = {
+    server: InferenceResult | null
+    browser: InferenceResult | null
 }
 
 declare global {
-    interface Window { APP_CONFIG: APP_CONFIG; }
+    interface Window {
+        APP_CONFIG: APP_CONFIG;
+    }
 }
 
 
-export type {ImageItem, APP_CONFIG, InferenceResult,PredictionResponse };
+export type {ImageItem, APP_CONFIG, InferenceResult, PredictionResponse, InferencerPrediction};

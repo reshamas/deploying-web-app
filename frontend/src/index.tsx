@@ -1,5 +1,3 @@
-import * as fs from 'fs';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

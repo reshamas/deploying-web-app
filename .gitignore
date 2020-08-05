@@ -6,3 +6,6 @@ frontend/config.yaml
 build
 frontend/*.zip
 artifacts
+.DS_Store
+backend/__pycache__/
+backend/.DS_Store

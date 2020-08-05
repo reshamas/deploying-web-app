@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from "react-markdown";
 
-export default class AboutPage extends React.Component {
+export default class AboutPage extends React.Component<{}, { } > {
     render() {
         return (
             <div>

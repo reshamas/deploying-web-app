@@ -10,3 +10,4 @@ artifacts
 backend/__pycache__/
 backend/.DS_Store
 artifacts.zip
+!backend/artifacts/.gitkeep

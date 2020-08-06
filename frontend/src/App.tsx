@@ -6,7 +6,6 @@ import AboutPage from "./components/AboutPage"
 import MainPage from "./components/MainPage"
 
 
-
 class App extends React.Component<{}, {}> {
 
 
@@ -22,7 +21,6 @@ class App extends React.Component<{}, {}> {
                             <Route exact path="/about" component={AboutPage}/>
                         </Switch>
                     </main>
-
 
 
                 </div>

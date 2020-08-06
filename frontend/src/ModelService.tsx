@@ -19,7 +19,10 @@ export class ModelService {
     }
 
     async initializeBrowserModel() {
-        try{
+        /**
+         * Initialize tfjs model and load classes
+         */
+        try {
             const mobilenet = await tf.loadGraphModel(window.APP_CONFIG.url_browser);
             mobilenet.predict(tf.zeros([1, this.image_size, this.image_size, 3]));
 
@@ -28,51 +31,17 @@ export class ModelService {
             const resPromise = await axios.get<string[]>(`${window.APP_CONFIG.url_server}/api/classes`);
             const res = resPromise.data;
             this.classes = res;
-        }catch (e) {
+        } catch (e) {
             console.error(`Failed to load mobilenet model ${e}`)
             alert(e)
         }
-        
+
     }
 
-    // async predict(args: { url: string | null, imageData: any }): Promise<PredictionResponse | null> {
-    //
-    //     if (args.url) {
-    //
-    //         const response = await fetch(args.url);
-    //         let data = await response.blob();
-    //
-    //         let metadata = {
-    //             type: 'image/jpeg'
-    //         };
-    //         args.imageData = new File([data], 'upload.jpeg', metadata)
-    //     }
-    //
-    //     if (args.imageData) {
-    //
-    //         const pr: PredictionResponse = {server: null, browser: null};
-    //
-    //         try {
-    //             let startTime = new Date().getTime();
-    //             const serverPromise = await this.predictServerSideInference(args.imageData)
-    //             pr.server = serverPromise.data
-    //             let endTime = new Date().getTime();
-    //             pr.server.duration_total = (endTime - startTime);
-    //
-    //             const t = await this.predictBrowserSideInference(args.imageData);
-    //
-    //         } catch (e) {
-    //             pr.server = e
-    //         }
-    //
-    //         return pr
-    //
-    //     }
-    //
-    //     return null;
-    // }
-
     async predictServerSideInference(args: { url: string | null, imageData: any }) {
+        /**
+         * Server Based inference using remote http call
+         */
         if (args.url) {
             const response = await fetch(args.url);
             let data = await response.blob();
@@ -95,15 +64,16 @@ export class ModelService {
 
             res.duration_total = (endTime - startTime);
 
-
             return res
-
         }
 
         return null;
     }
 
     async predictBrowserSideInference(element: HTMLImageElement | any): Promise<InferenceResult | null> {
+        /**
+         * Browser Based inference using loaded tfjs model
+         */
         const startTime = new Date().getTime();
 
         const logits = tf.tidy(() => {
@@ -142,6 +112,9 @@ export class ModelService {
     }
 
     async getTopKClasses(logits: any, topK: number, classes: string[]) {
+        /**
+         * Get top n predictions from raw probabilities and class names
+         */
         const scores = await logits.data();
 
 

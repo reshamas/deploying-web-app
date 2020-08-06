@@ -29,7 +29,7 @@
   "scripts": {
     "prestart": "node setup.tsx",
     "start": "craco start",
-    "build": "craco build && cp build/index.html build/404.html ",
+    "build": "craco build && cp build/index.html build/404.html",
     "test": "craco test",
     "eject": "craco eject"
   },

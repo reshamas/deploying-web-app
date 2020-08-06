@@ -1,9 +1,9 @@
-title: Food Images Classifier
-description: Classify food images using deep learning
+title: Image Classifier
+description: Classify Image Using Deep Learning
 about:
 
 
-  This is a Food Images Classifier using Deep Learning built on top of TensorFlow.
+  This is an Image Classifier using deep learning built on top of TensorFlow.
 
 
   The project was built by [Nidhin Pattaniyil](https://npatta01.github.io)
@@ -26,15 +26,15 @@ image_size: 224
 top_k: 5
 
 sampleImages:
-  - name: Granny Smith
+  - name: Granny Smith apple
     url: https://upload.wikimedia.org/wikipedia/commons/d/d7/Granny_smith_and_cross_section.jpg
   - name: keyboard
     url: https://upload.wikimedia.org/wikipedia/commons/0/0c/ThinkPad_USB_keyboard_%283829537325%29.jpg
   - name: killer whale
     url: https://upload.wikimedia.org/wikipedia/commons/3/37/Killerwhales_jumping.jpg
-  - name: Labrador Retriever
+  - name: Labrador retriever
     url: https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg
-  - name: iphone (not in training data)
+  - name: iPhone (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/3/3b/IPhone_5s_top.jpg
   - name: sphinx (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg

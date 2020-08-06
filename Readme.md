@@ -38,7 +38,7 @@ The `99999999` indicates that the model file should be split to 100 MB partition
 ```
 tensorflowjs_converter \
 --input_format=keras \
---output_format=tfjs_layers_model \
+--output_format=tfjs_graph_model \
 --split_weights_by_layer \
 --weight_shard_size_bytes=99999999 \
 artifacts/model_tf_keras.h5 artifacts/model_tfjs

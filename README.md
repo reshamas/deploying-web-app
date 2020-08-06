@@ -2,12 +2,12 @@
 
 ## Overview 
 
-This repo is a sample illustrating how to do Tesnroflow browser based and server side inference.
+This repo is a sample illustrating how to do TensorFlow browser based and server side inference.
 
 In [backend](backend), is the server side inference code written in Python and served with FastApi.
 In [frontend](frontend), is the browser based inference code written in Typescript / React 
 
-The tensorflow artifacts should be served at [here](backend/artifacts).
+The TensorFlow artifacts should be served at [here](backend/artifacts).
 A sample artifact can be found in the repo [releases](https://github.com/reshamas/deploying-web-app/releases/tag/1.0.0-tfjs) 
 
 ## Demo 
@@ -23,7 +23,7 @@ Browse Based Inference: [Github Pages](https://reshamas.github.io/deploying-web-
 
 
 
-## Converting tensorflow model
+## Converting TensorFlow model
 
 It is strongly recommended to create a separate environment for `tesnorflowjs`
 

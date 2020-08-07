@@ -32,7 +32,7 @@ export class ModelService {
             const res = resPromise.data;
             this.classes = res;
         } catch (e) {
-            console.error(`Failed to load mobilenet model ${e}`)
+            console.error(`Failed to load mobilenet model from ${window.APP_CONFIG.url_browser} ${e}`)
             alert(e)
         }
 
@@ -71,6 +71,10 @@ export class ModelService {
     }
 
     async predictBrowserSideInference(element: HTMLImageElement | any): Promise<InferenceResult | null> {
+        if(!this.mobilenet){
+            await this.initializeBrowserModel()
+        }
+
         /**
          * Browser Based inference using loaded tfjs model
          */

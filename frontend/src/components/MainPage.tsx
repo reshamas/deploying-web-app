@@ -6,6 +6,8 @@ import DropdownMenu from "react-bootstrap/DropdownMenu";
 import {ImageItem, InferenceResult} from "../model";
 import styles from "./MainPage.module.css";
 import {ModelService} from "../ModelService";
+import ReactMarkdown from "react-markdown";
+const breaks = require('remark-breaks')
 
 
 interface IState {
@@ -127,6 +129,12 @@ export default class MainPage extends React.Component<{}, IState> {
     render() {
         const sampleImages = window.APP_CONFIG.sampleImages;
 
+        const notes = `
+Server side inference makes a call every time to ${window.APP_CONFIG.url_server} . 
+
+Browser side inference makes an initial call to  ${window.APP_CONFIG.url_browser} to fetch the model and future inference happens locally.
+`
+
         return (
             <div>
                 <h1>{window.APP_CONFIG.description}</h1>
@@ -194,7 +202,7 @@ export default class MainPage extends React.Component<{}, IState> {
 
                 </Form>
 
-                <div>
+                <div className={"mb-5"} id="prediction-container">
                     <Row>
                         <Col>
                             <h2> Server Side Inference</h2>
@@ -211,7 +219,10 @@ export default class MainPage extends React.Component<{}, IState> {
 
                 </div>
 
-
+                <div >
+                    <h3>Notes</h3>
+                    <ReactMarkdown source={notes} escapeHtml={false} plugins={[breaks]} />
+                </div>
             </div>
         );
     }

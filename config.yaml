@@ -16,12 +16,6 @@ about:
 
 code: https://github.com/npatta01/web-deep-learning-classifier
 
-#url_server: http://localhost:8000
-#url_browser: http://localhost:8000/artifacts/model_tfjs/model.json
-
-url_server: https://manning-deploy-imagenet.herokuapp.com
-url_browser: https://manning-deploy-imagenet.herokuapp.com/artifacts/model_tfjs/model.json
-
 image_size: 224
 top_k: 5
 

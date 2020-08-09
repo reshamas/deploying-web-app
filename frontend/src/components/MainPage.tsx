@@ -130,9 +130,9 @@ export default class MainPage extends React.Component<{}, IState> {
         const sampleImages = window.APP_CONFIG.sampleImages;
 
         const notes = `
-Server side inference makes a call every time to ${window.APP_CONFIG.url_server} . 
+Server side inference makes a call every time to /api/predict_image . 
 
-Browser side inference makes an initial call to  ${window.APP_CONFIG.url_browser} to fetch the model and future inference happens locally.
+Browser side inference makes an initial call to /artifacts/model_tfjs/model.json to fetch the model and future inference happens locally.
 `
 
         return (

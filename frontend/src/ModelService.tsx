@@ -28,7 +28,7 @@ export class ModelService {
 
             this.mobilenet = mobilenet;
 
-            const resPromise = await axios.get<string[]>(`${window.APP_CONFIG.url_server}/api/classes`);
+            const resPromise = await axios.get<string[]>(`/api/classes`);
             const res = resPromise.data;
             this.classes = res;
         } catch (e) {
@@ -58,7 +58,7 @@ export class ModelService {
 
             let startTime = new Date().getTime();
 
-            const resPromise = await axios.post<InferenceResult>(`${window.APP_CONFIG.url_server}/api/predict_image`, data);
+            const resPromise = await axios.post<InferenceResult>(`/api/predict_image`, data);
             const res = resPromise.data;
             const endTime = new Date().getTime();
 

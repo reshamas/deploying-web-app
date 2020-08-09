@@ -92,22 +92,6 @@ heroku open --app $APP_NAME
 heroku logs --tail --app ${APP_NAME}
 ```
 
-## Browser Deployment
-The app is also deployed as a static page on github pages. 
-Forks of this repo will automatically deploy to your github pages.
-
-Refer to [push.yaml](.github/workflows/push.yml) for the automated steps.
-
-
-In [package.json](frontend/package.json), replace "homepage" with the url for the base url your app will be hosted.
-If the app is deployed on github, then the url should be `https://{github user id}.github.io/{repo name}`
-
-
 ## Customizing
 In order to prevent most frontend changes, most of the text and options are configured in this [config.yml](config.yaml).
-
-The options that you will need to change are 
-`url_server`: url for server based inference 
-`url_browser`: url for where tfjs model is stored
-
 

@@ -27,10 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 app.mount("/static", StaticFiles(directory="build/static"), name="static")
 
-inferencer = helper.Inferencer(artifacts="artifacts")
+inferencer = helper.Inferencer(assets="assets")
 
 
 def predict_helper(response: Response, file: bytes, top_k=3):

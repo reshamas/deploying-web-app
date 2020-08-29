@@ -9,8 +9,6 @@ interface APP_CONFIG {
     about: string
     code: string
     sampleImages: ImageItem[]
-    url_server: string
-    url_browser: string
     image_size: number
     top_k: number
 

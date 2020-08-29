@@ -20,15 +20,15 @@ class InferenceResponse(BaseModel):
 
 
 class Inferencer:
-    def __init__(self, artifacts="artifacts", target_size=(224, 224)):
+    def __init__(self, assets="assets", target_size=(224, 224)):
         """
         Wrapper around model
 
-        :param artifacts:
+        :param assets:
         :param target_size:
         """
-        self.classifier = tf.keras.models.load_model(artifacts + "/model.h5")
-        with open(f"{artifacts}/classes.json") as f:
+        self.classifier = tf.keras.models.load_model(assets + "/model_tf/model.h5")
+        with open(f"{assets}/classes.json") as f:
             self.labels = json.load(f)
 
         self.target_size = target_size

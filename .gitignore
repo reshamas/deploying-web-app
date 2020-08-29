@@ -8,6 +8,7 @@ frontend/*.zip
 artifacts
 .DS_Store
 backend/__pycache__/
+backend/assets/
 backend/.DS_Store
 artifacts.zip
 !backend/artifacts/.gitkeep

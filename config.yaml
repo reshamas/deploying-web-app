@@ -1,5 +1,5 @@
-title: Image Classifier
-description: Classify Image Using Deep Learning
+title: Food Image Classifier
+description: Classify Food Image Using Deep Learning
 about:
 
 
@@ -14,23 +14,26 @@ about:
 
 
 
-code: https://github.com/npatta01/web-deep-learning-classifier
+code: https://github.com/reshamas/deploying-web-app.git
 
 image_size: 224
 top_k: 5
 
 sampleImages:
-  - name: Granny Smith apple
+  - name: Cheese Cake
+    url: https://upload.wikimedia.org/wikipedia/commons/e/ea/Baked_cheesecake_with_raspberries_and_blueberries.jpg
+  - name: Chicken Quesadilla
+    url: https://upload.wikimedia.org/wikipedia/commons/7/75/Quesadilla_2.jpg
+  - name: Chicken Wings
+    url: https://upload.wikimedia.org/wikipedia/commons/d/dd/Buffalo_-_Wings_at_Airport_Anchor_Bar.jpg
+  - name: Chocolate Cake
+    url: https://upload.wikimedia.org/wikipedia/commons/6/6a/ChocolateTruffleCakeIdeal01.JPG
+  - name: Granny Smith apple (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/d/d7/Granny_smith_and_cross_section.jpg
-  - name: keyboard
-    url: https://upload.wikimedia.org/wikipedia/commons/0/0c/ThinkPad_USB_keyboard_%283829537325%29.jpg
-  - name: killer whale
-    url: https://upload.wikimedia.org/wikipedia/commons/3/37/Killerwhales_jumping.jpg
-  - name: Labrador retriever
+  - name: salad (not in training data)
+    url : https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg
+  - name: Labrador retriever (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg
   - name: iPhone (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/3/3b/IPhone_5s_top.jpg
-  - name: sphinx (not in training data)
-    url: https://upload.wikimedia.org/wikipedia/commons/f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg
-  - name: salad (not in training data)
-    url : https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg
+  

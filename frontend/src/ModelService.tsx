@@ -22,8 +22,9 @@ export class ModelService {
         /**
          * Initialize tfjs model and load classes
          */
+        const modelAssetUrl = '/assets/model_tfjs/model.json'
         try {
-            const mobilenet = await tf.loadGraphModel(window.APP_CONFIG.url_browser);
+            const mobilenet = await tf.loadGraphModel(modelAssetUrl);
             mobilenet.predict(tf.zeros([1, this.image_size, this.image_size, 3]));
 
             this.mobilenet = mobilenet;
@@ -32,7 +33,7 @@ export class ModelService {
             const res = resPromise.data;
             this.classes = res;
         } catch (e) {
-            console.error(`Failed to load mobilenet model from ${window.APP_CONFIG.url_browser} ${e}`)
+            console.error(`Failed to load mobilenet model from ${modelAssetUrl} ${e}`)
             alert(e)
         }
 

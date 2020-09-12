@@ -49,7 +49,7 @@ artifacts/model_tf_keras.h5 artifacts/model_tfjs
 ## Local Deployment
 
 ```
-docker build -t app 
+docker build -t app .
 docker run -p 8000:8000 -t app 
 ```
 

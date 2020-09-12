@@ -57,7 +57,7 @@ If you want to develop outside docker,
 python (backend)
 ```
 conda create -n dl_env python=3.7 
-pip install -r backend/requirments.txt
+pip install -r backend/requirements.txt
 ```
 
 frontend

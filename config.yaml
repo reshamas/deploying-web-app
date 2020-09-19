@@ -10,7 +10,7 @@ about:
   and [Reshama Shaikh](https://reshamas.github.io).
 
 
-  More info and the source code can he found in the [Manning Course](Link) .
+  More info and the source code can be found in the [Manning Course](https://liveproject.manning.com/).
 
 
 
@@ -28,9 +28,9 @@ sampleImages:
     url: https://upload.wikimedia.org/wikipedia/commons/d/dd/Buffalo_-_Wings_at_Airport_Anchor_Bar.jpg
   - name: Chocolate Cake
     url: https://upload.wikimedia.org/wikipedia/commons/6/6a/ChocolateTruffleCakeIdeal01.JPG
-  - name: Granny Smith apple (not in training data)
+  - name: Granny Smith Apple (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/d/d7/Granny_smith_and_cross_section.jpg
-  - name: salad (not in training data)
+  - name: Salad (not in training data)
     url : https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg
   - name: Labrador retriever (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg

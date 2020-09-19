@@ -11,7 +11,7 @@ export default class NavBar extends React.Component<{}, {  }> {
 
                 <Nav className="mr-auto">
 
-                    <Nav.Link as={Link} to="/">All</Nav.Link>
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/about">About</Nav.Link>
 
                     <Nav.Link href={`${window.APP_CONFIG.code}`}>Code</Nav.Link>

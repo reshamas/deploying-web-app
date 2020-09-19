@@ -93,7 +93,7 @@ export default class MainPage extends React.Component<{}, IState> {
                 alert(e)
             }
         } else {
-            alert("Either url or image needs to be set")
+            alert("Either URL or image needs to be set")
         }
     }
 
@@ -143,12 +143,12 @@ Browser side inference makes an initial call to /assets/model_tfjs/model.json to
                 <Form>
                     <FormGroup>
                         <div>
-                            <p>Provide a Url</p>
+                            <p>Provide a URL</p>
                             <div>
 
                                 <Dropdown>
                                     <DropdownToggle>
-                                        Sample Image Url
+                                        Sample Image URL
                                     </DropdownToggle>
                                     <DropdownMenu>
                                         {sampleImages.map(si =>

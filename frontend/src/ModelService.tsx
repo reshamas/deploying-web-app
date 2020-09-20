@@ -84,13 +84,13 @@ export class ModelService {
         const logits = tf.tidy(() => {
             // tf.browser.fromPixels() returns a Tensor from an image element.
 
-            let img = tf.browser.fromPixels(element)
+            let imageTensor = tf.browser.fromPixels(element)
                 .resizeBilinear([this.image_size, this.image_size])
                 .toFloat();
 
             const offset = tf.scalar(127.5);
             // Normalize the image from [0, 255] to [-1, 1].
-            const normalized = img.sub(offset).div(offset);
+            const normalized = imageTensor.sub(offset).div(offset);
 
 
             // Reshape to a single-element batch so we can pass it to predict.

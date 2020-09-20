@@ -4,7 +4,7 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import {ImageItem, InferenceResult} from "../model";
-import styles from "./MainPage.module.css";
+import styles from "./HomePage.module.css";
 import {ModelService} from "../ModelService";
 import ReactMarkdown from "react-markdown";
 const breaks = require('remark-breaks')
@@ -20,7 +20,7 @@ interface IState {
     rawFile: File | null
 }
 
-export default class MainPage extends React.Component<{}, IState> {
+export default class HomePage extends React.Component<{}, IState> {
 
     state: IState = {
         url: "",

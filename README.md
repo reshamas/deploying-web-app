@@ -29,18 +29,21 @@ It is strongly recommended to create a separate environment for `tesnorflowjs`
 
 Installing tensorflowjs 
 ``` 
-pip install tensorflowjs==2.1.0
+pip install tensorflowjs==2.3.0
 ```
 
 Converting keras model located at `artifacts/model_tf_keras.h5` and saving to `artifacts/model_tfjs`
-The `99999999` indicates that the model file should be split to 100 MB partitions
+The `99999999` indicates that the model file should be split to 100 MB partitions.
+
+The `quantize_float16=*`  decrease the default 32-bit precision to 16-bit precision which will reduce the model file size by half 
 
 ```
 tensorflowjs_converter \
 --input_format=keras \
 --output_format=tfjs_graph_model \
 --split_weights_by_layer \
---weight_shard_size_bytes=99999999 \
+--weight_shard_size_bytes=99999999 \ 
+--quantize_float16=* \
 artifacts/model_tf_keras.h5 artifacts/model_tfjs
 
 ```
